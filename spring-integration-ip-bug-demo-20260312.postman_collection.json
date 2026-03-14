@@ -1,9 +1,10 @@
 {
   "info": {
-    "_postman_id": "6d350201-81ca-4c8f-9c30-5620a0ce0684",
+    "_postman_id": "192d35f3-fd1b-43c8-8610-82edbef8affa",
     "name": "spring-integration-ip-bug-demo-20260312",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-    "_exporter_id": "26210284"
+    "_exporter_id": "53187330",
+    "_collection_link": "https://go.postman.co/collection/53187330-192d35f3-fd1b-43c8-8610-82edbef8affa?source=collection_link"
   },
   "item": [
     {
