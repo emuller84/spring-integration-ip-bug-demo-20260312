@@ -2,6 +2,7 @@ package com.company.app.config.client.tcp.device;
 
 import jakarta.annotation.Nonnull;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.ApplicationEventPublisher;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -16,6 +17,7 @@ import org.springframework.integration.ip.tcp.serializer.ByteArrayLengthHeaderSe
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.MessageHandler;
 import org.springframework.messaging.MessagingException;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
@@ -45,16 +47,23 @@ public class TheHardwareDeviceClientConfig {
         this.applicationEventPublisher = applicationEventPublisher;
     }
 
-    @Bean
-    @ServiceActivator(inputChannel = "theHardwareDeviceOutboundChannel")
-    public MessageHandler theHardwareDeviceOutboundChannelA() {
-        return createTcpOutboundGateway();
+    @Service
+    public class ConnectionA {
+        @Bean(name = "theHardwareDeviceOutboundChannelA")
+        @ServiceActivator(inputChannel = "theHardwareDeviceOutboundChannel")
+        public MessageHandler theHardwareDeviceOutboundChannelA() {
+            return createTcpOutboundGateway();
+        }
     }
 
-    @Bean
-    @ServiceActivator(inputChannel = "theHardwareDeviceOutboundChannel")
-    public MessageHandler theHardwareDeviceOutboundChannelB() {
-        return createTcpOutboundGateway();
+    @ConditionalOnProperty(value = "device-service.enable-second-connection", havingValue = "true")
+    @Service
+    public class ConnectionB {
+        @Bean(name = "theHardwareDeviceOutboundChannelB")
+        @ServiceActivator(inputChannel = "theHardwareDeviceOutboundChannel")
+        public MessageHandler theHardwareDeviceOutboundChannelB() {
+            return createTcpOutboundGateway();
+        }
     }
 
     /**

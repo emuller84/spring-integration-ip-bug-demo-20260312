@@ -22,6 +22,7 @@ logging:
 
 
 device-service:
+  enable-second-connection: true
   tcp:
     host: "127.0.0.1"
     port: 1500
