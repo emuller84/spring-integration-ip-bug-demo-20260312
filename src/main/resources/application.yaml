@@ -1,17 +1,19 @@
 server:
   port: 8014
   servlet:
-    context-path: /v0
+    context-path: "/v0"
 
 spring:
   application:
-    name: api-app
+    name: "api-app"
   output:
     ansi:
       enabled: ALWAYS
 
 # Logging conf
 logging:
+  file:
+    name: "logs/spring-app-log.log"
   level:
     org:
       springframework:
@@ -21,9 +23,9 @@ logging:
 
 device-service:
   tcp:
-    host: 127.0.0.1
+    host: "127.0.0.1"
     port: 1500
-    failoverRefreshSharedInterval: 300000
+    failoverRefreshSharedInterval: "300000"
     timeout:
       connect: 2000
       remoteGateway: 2000
