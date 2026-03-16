@@ -51,7 +51,7 @@ And a successful response:
    - If possible, run it with Amazon Corretto distribution of Java 21. This is what I used.
    - I ran it from the IntelliJ IDEA IDE
    - Running it in debug mode may help increase the possibility of triggering the error
-   - This spring app uses two TCP connections (two `TcpOutboundGateway`s plus connection factories) to replicate the connection setup used in real-world application where I experienced this potential bug. I have also tried with a single connection and was able to see the error, but it took more time and luck to trigger it. If you want to try it with a just one connection, which I guess would be easier to debug, then set the configuration property `device-service.enable-second-connection` to `false` in [src/main/resources/application.yaml](src/main/resources/application.yaml).
+   - This spring app uses two TCP connections (two `TcpOutboundGateway`s plus connection factories) to replicate the connection setup used in the real-world application where I experienced this potential bug. I have also tried with a single connection and was able to see the error, but it took more time and luck to trigger it. If you want to try it with just one connection, which I guess would be easier to debug, then set the configuration property `device-service.enable-second-connection` to `false` in [src/main/resources/application.yaml](src/main/resources/application.yaml).
 3. On the Postman application:
    - Import the [`spring-integration-ip-bug-demo-20260312.postman_collection.json`](spring-integration-ip-bug-demo-20260312.postman_collection.json) collection
    - Go to the "Overview" page of the imported collection -> "Runs" -> "Performance" -> "Run" -> "Performance" and run
